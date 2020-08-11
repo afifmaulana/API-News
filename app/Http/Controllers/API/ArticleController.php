@@ -45,7 +45,7 @@ class ArticleController extends Controller
         $article->save();
 
         return response()->json([
-            'message' => 'Berhasil Menambahkan Article',
+            'message' => 'Berhasil Menambahkan Artikel',
             'status' => true,
             'data' => $article
         ]);
@@ -61,7 +61,7 @@ class ArticleController extends Controller
         $article->update();
 
         return response()->json([
-            'message' => 'Berhasil Mengubah Article',
+            'message' => 'Berhasil Mengubah Artikel',
             'status' => true,
             'data' => $article
         ]);
@@ -81,7 +81,7 @@ class ArticleController extends Controller
         $article->update();
 
         return response()->json([
-            'message' => 'Berhasil Mengubah Article',
+            'message' => 'Berhasil Mengubah Artikel',
             'status' => true,
             'data' => $article
         ]);
