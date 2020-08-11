@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Article;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ArticleResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -14,6 +15,17 @@ class ArticleController extends Controller
     {
         $this->middleware('auth:api');
     }
+
+    public function index()
+    {
+        $articles = Article::all();
+        return response()->json([
+            'message' => 'Berhasil Menampilkan Artikel',
+            'status' => true,
+            'article' => ArticleResource::collection($articles),
+        ]);
+    }
+
 
     public function store(Request $request)
     {
@@ -99,5 +111,6 @@ class ArticleController extends Controller
             'data' => $article
         ]);
     }
+
 
 }
