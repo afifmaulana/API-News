@@ -21,3 +21,4 @@ Route::post('article/store', 'API\ArticleController@store');
 Route::put('article/{id}/update', 'API\ArticleController@updateArticle');
 Route::post('article/{id}/update/image', 'API\ArticleController@updateImage');
 Route::get('article/{id}/delete', 'API\ArticleController@delete');
+Route::get('profile', 'API\UserController@profile');
