@@ -15,7 +15,7 @@ class CategoryController extends Controller
         return response()->json([
             'message' => 'Berhasil Menampilkan Category',
             'status' => true,
-            'article' => CategoryResource::collection($categorys),
+            'data' => CategoryResource::collection($categorys),
         ]);
     }
 }
