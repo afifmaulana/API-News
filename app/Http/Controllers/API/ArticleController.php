@@ -15,7 +15,7 @@ class ArticleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('index');
     }
 
     public function index()
@@ -134,14 +134,5 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function showCategory()
-    {
-        $categorys = Category::all();
-        return response()->json([
-            'message' => 'Berhasil Menampilkan Category',
-            'status' => true,
-            'article' => CategoryResource::collection($categorys),
-            ]);
-    }
 
 }
