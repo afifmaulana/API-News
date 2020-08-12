@@ -23,4 +23,5 @@ Route::post('article/{id}/update/image', 'API\ArticleController@updateImage');
 Route::get('article/{id}/delete', 'API\ArticleController@delete');
 Route::get('article/show', 'API\ArticleController@showArticleUser');
 Route::get('article/category/{category_id}', 'API\ArticleController@showArticleCategory');
+Route::get('category', 'API\ArticleController@showCategory');
 Route::get('profile', 'API\UserController@profile');

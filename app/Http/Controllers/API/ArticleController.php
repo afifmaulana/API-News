@@ -6,6 +6,7 @@ use App\Article;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleResource;
+use App\Http\Resources\CategoryResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -133,5 +134,14 @@ class ArticleController extends Controller
         ]);
     }
 
+    public function showCategory()
+    {
+        $categorys = Category::all();
+        return response()->json([
+            'message' => 'Berhasil Menampilkan Category',
+            'status' => true,
+            'article' => CategoryResource::collection($categorys),
+            ]);
+    }
 
 }
