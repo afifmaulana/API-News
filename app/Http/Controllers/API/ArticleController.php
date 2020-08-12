@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Article;
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleResource;
 use Illuminate\Http\Request;
@@ -112,5 +113,24 @@ class ArticleController extends Controller
         ]);
     }
 
+    public function showArticleUser()
+    {
+        $articles = Article::where('user_id', Auth::user()->id)->get();
+        return response()->json([
+            'message' => 'Berhasil Menampilkan Artikel',
+            'status' => true,
+            'article' => ArticleResource::collection($articles),
+        ]);
+    }
+
+    public function showArticleCategory($category_id)
+    {
+        $articles = Article::where('category_id', $category_id)->get();
+        return response()->json([
+            'message' => 'Berhasil Menampilkan Artikel',
+            'status' => true,
+            'article' => ArticleResource::collection($articles),
+        ]);
+    }
 
 }
