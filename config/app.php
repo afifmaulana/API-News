@@ -161,7 +161,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
+//        Illuminate\League\Flysystem\AwsS3v3\AwsS3Adapter::class,
         /*
          * Package Service Providers...
          */

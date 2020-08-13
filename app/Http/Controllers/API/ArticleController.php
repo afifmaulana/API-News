@@ -11,6 +11,7 @@ use App\Http\Resources\ReviewResource;
 use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
@@ -49,15 +50,15 @@ class ArticleController extends Controller
 
         $image_article = $request->file('image');
         $path = time(). $image_article->getClientOriginalExtension();
-        $destinationPath = public_path('uploads/articles');
-        $image_article->move($destinationPath, $path);
+        $destinationPath = 'uploads/articles' . $path;
+        Storage::disk('s3')->put($destinationPath, file_get_contents($image_article));
 
         $article = new Article();
         $article->user_id = Auth::user()->id;
         $article->title = $request->title;
         $article->category_id = $request->category_id;
         $article->content = $request->content_article;
-        $article->image = $path;
+        $article->image = Storage::disk('s3')->url($destinationPath, $path);
 
         $article->save();
 
@@ -89,11 +90,11 @@ class ArticleController extends Controller
 //        dd($request->all());
         $image_article = $request->file('image');
         $path = time(). $image_article->getClientOriginalExtension();
-        $destinationPath = public_path('uploads/articles');
-        $image_article->move($destinationPath, $path);
+        $destinationPath = 'uploads/articles' . $path;
+        Storage::disk('s3')->put($destinationPath, file_get_contents($image_article));;
 
         $article = Article::find($id);
-        $article->image = $path;
+        $article->image = Storage::disk('s3')->url($destinationPath, $path);
 
         $article->update();
 
