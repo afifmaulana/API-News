@@ -26,7 +26,7 @@ Route::get('article/category/{category_id}', 'API\ArticleController@showArticleC
 Route::get('category', 'API\CategoryController@showCategory');
 Route::get('profile', 'API\UserController@profile');
 Route::post('profile/update/profile', 'API\UserController@UpdateProfile');
-Route::post('comment', 'API\CommentController@comment');
+Route::post('comment/store', 'API\CommentController@comment');
 Route::get('comment/article/{article_id}', 'API\ArticleController@showCommentArticle');
 
 
