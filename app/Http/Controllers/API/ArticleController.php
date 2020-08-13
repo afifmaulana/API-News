@@ -141,7 +141,7 @@ class ArticleController extends Controller
     {
         $reviews = Review::where('article_id', $article_id)->get();
         return response()->json([
-            'message' => 'Berhasil Menampilkan Artikel',
+            'message' => 'Berhasil Menampilkan Komentar',
             'status' => true,
             'data' => ReviewResource::collection($reviews),
         ]);
