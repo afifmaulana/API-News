@@ -7,6 +7,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\CategoryResource;
+use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -43,6 +44,7 @@ class ArticleController extends Controller
                 'data' => (object)[]
             ]);
         }
+
 
         $image_article = $request->file('image');
         $path = time(). $image_article->getClientOriginalExtension();
@@ -134,5 +136,8 @@ class ArticleController extends Controller
         ]);
     }
 
-
+//    public function totalComment()
+//    {
+//        $review = Review::
+//    }
 }
