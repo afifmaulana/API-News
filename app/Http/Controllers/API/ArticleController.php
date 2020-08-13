@@ -24,7 +24,7 @@ class ArticleController extends Controller
         return response()->json([
             'message' => 'Berhasil Menampilkan Artikel',
             'status' => true,
-            'article' => ArticleResource::collection($articles),
+            'data' => ArticleResource::collection($articles),
         ]);
     }
 
