@@ -21,7 +21,8 @@ class ArticleResource extends JsonResource
             "image" => $this->image,
             "user" => new UserResource($this->user),
             "category" => new CategoryResource($this->category),
-            "reviews" => ReviewResource::collection($this->reviews)
+            //"reviews" => ReviewResource::collection($this->reviews),
+            "total_comment" =>count($this->reviews)
         ];
     }
 }

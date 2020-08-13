@@ -7,6 +7,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleResource;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ReviewResource;
 use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -136,8 +137,14 @@ class ArticleController extends Controller
         ]);
     }
 
-//    public function totalComment()
-//    {
-//        $review = Review::
-//    }
+    public function showCommentArticle($article_id)
+    {
+        $user = Auth::user();
+        $reviews = Review::where('article_id', $article_id)->get();
+        return response()->json([
+            'message' => 'Berhasil Menampilkan Artikel',
+            'status' => true,
+            'data' => ReviewResource::collection($reviews),
+        ]);
+    }
 }

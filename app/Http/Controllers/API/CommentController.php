@@ -32,9 +32,9 @@ class CommentController extends Controller
         ]);
     }
 
-    public function showComment($id)
+    public function showComment($article_id)
     {
-        $reviews = Review::find($id);
+        $reviews = Review::where('article_id', $article_id)->get();
         return response()->json([
            'message' => 'Berhasil menampilkan Komentar',
            'status' => true,
