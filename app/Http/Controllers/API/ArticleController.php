@@ -17,7 +17,7 @@ class ArticleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except('index', 'showArticleCategory');
+        $this->middleware('auth:api')->except('index', 'showArticleCategory', 'showCommentArticle');
     }
 
     public function index()
@@ -139,7 +139,6 @@ class ArticleController extends Controller
 
     public function showCommentArticle($article_id)
     {
-        $user = Auth::user();
         $reviews = Review::where('article_id', $article_id)->get();
         return response()->json([
             'message' => 'Berhasil Menampilkan Artikel',
