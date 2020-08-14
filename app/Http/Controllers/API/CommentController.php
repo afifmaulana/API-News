@@ -57,7 +57,7 @@ class CommentController extends Controller
         return response()->json([
            'message' => 'Berhasil Membalas Komentar',
             'status' => true,
-            'data' => $comment
+            'data' => (object)[]
         ]);
     }
 
