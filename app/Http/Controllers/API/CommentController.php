@@ -43,7 +43,7 @@ class CommentController extends Controller
         ]);
     }
 
-    public function CommentInComment(Request $request)
+    public function AnswerComment(Request $request)
     {
         $comment = new Comment();
         $comment->user_id = Auth::user()->id;
@@ -58,5 +58,7 @@ class CommentController extends Controller
             'data' => $comment
         ]);
     }
+
+    public function show
 
 }
