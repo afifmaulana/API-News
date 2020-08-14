@@ -43,11 +43,20 @@ class CommentController extends Controller
         ]);
     }
 
-    public function CommentInComment()
+    public function CommentInComment(Request $request)
     {
         $comment = new Comment();
         $comment->user_id = Auth::user()->id;
+        $comment->review_id = $request->review_id;
+        $comment->comment = $request->comment;
 
+        $comment->save();
+
+        return response()->json([
+           'message' => 'Berhasil Membalas Komentar',
+            'status' => true,
+            'data' => $comment
+        ]);
     }
 
 }
