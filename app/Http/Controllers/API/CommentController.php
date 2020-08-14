@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Comment;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ReviewResource;
 use App\Review;
@@ -21,7 +22,7 @@ class CommentController extends Controller
         $review->user_id = Auth::user()->id;
         $review->article_id = $request->article_id;
         $review->rating = $request->rating;
-        $review->coment = $request->coment;
+        $review->comment = $request->comment;
 
         $review->save();
 
@@ -40,6 +41,13 @@ class CommentController extends Controller
            'status' => true,
            'data' => ReviewResource::collection($reviews)
         ]);
+    }
+
+    public function CommentInComment()
+    {
+        $comment = new Comment();
+        $comment->user_id = Auth::user()->id;
+
     }
 
 }
