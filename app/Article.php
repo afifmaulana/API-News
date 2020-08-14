@@ -22,4 +22,9 @@ class Article extends Model
     {
         return $this->hasMany(Review::class, 'article_id', 'id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'review_id', 'id');
+    }
 }

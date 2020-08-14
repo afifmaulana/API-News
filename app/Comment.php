@@ -13,9 +13,9 @@ class Comment extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function review()
-    {
-        return $this->belongsTo(Review::class, 'review_id', 'id');
-    }
+//    public function reviews()
+//    {
+//        return $this->hasMany(Review::class, 'review_id', 'id');
+//    }
 
 }

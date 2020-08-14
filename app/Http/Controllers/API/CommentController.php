@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Comment;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CommentResource;
 use App\Http\Resources\ReviewResource;
 use App\Review;
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class CommentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except('showComment');
+        $this->middleware('auth:api')->except('showComment', 'showAnswerComment');
     }
 
     public function comment(Request $request)
@@ -35,6 +36,7 @@ class CommentController extends Controller
 
     public function showComment($article_id)
     {
+//        $comments = Comment::where('review_id')->get();
         $reviews = Review::where('article_id', $article_id)->get();
         return response()->json([
            'message' => 'Berhasil menampilkan Komentar',
@@ -59,6 +61,14 @@ class CommentController extends Controller
         ]);
     }
 
-    public function show
+//    public function showAnswerComment($review_id)
+//    {
+//        $comments = Comment::where('review_id', $review_id)->get();
+//        return response()->json([
+//           'message' => 'Berhasil Menampilkan Balasan Komentar',
+//           'status' => true,
+//           'data' => CommentResource::collection($comments)
+//        ]);
+//    }
 
 }
