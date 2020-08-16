@@ -30,6 +30,7 @@ Route::post('comment/store', 'API\CommentController@comment');
 Route::get('comment/article/{article_id}', 'API\ArticleController@showCommentArticle');
 Route::post('comment/answer/store', 'API\CommentController@AnswerComment');
 Route::put('comment/{id}/update', 'API\CommentController@UpdateComment');
+Route::get('comment/{id}/delete', 'API\CommentController@DeleteReview');
 
 
 

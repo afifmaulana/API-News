@@ -64,7 +64,6 @@ class CommentController extends Controller
 
     public function showComment($article_id)
     {
-//        $comments = Comment::where('review_id')->get();
         $reviews = Review::where('article_id', $article_id)->get();
         return response()->json([
            'message' => 'Berhasil menampilkan Komentar',
