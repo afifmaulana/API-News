@@ -13,7 +13,7 @@ class CommentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except('showComment', 'showAnswerComment');
+        $this->middleware('auth:api')->except(['showComment', 'showAnswerComment']);
     }
 
     public function showComment($article_id)

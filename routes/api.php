@@ -34,7 +34,7 @@ Route::post('profile/update/profile', 'API\UserController@UpdateProfile');
 Route::post('review/store', 'API\ReviewController@ReviewStore');
 Route::post('review/{id}/update', 'API\ReviewController@ReviewUpdate');
 Route::get('review/{id}/destroy', 'API\ReviewController@destroy');
-Route::get('review/article/{article_id}', 'API\ArticleController@showCommentArticle');
+Route::get('review/article/{article_id}', 'API\ReviewController@showReviewArticle');
 
 
 Route::post('comment/answer/store', 'API\CommentController@AnswerComment');

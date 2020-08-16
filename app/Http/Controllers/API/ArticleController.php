@@ -3,12 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Article;
-use App\Category;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ArticleResource;
-use App\Http\Resources\CategoryResource;
-use App\Http\Resources\ReviewResource;
-use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -18,7 +14,7 @@ class ArticleController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api')->except('index', 'showArticleCategory', 'showCommentArticle');
+        $this->middleware('auth:api')->except(['index', 'showArticleCategory']);
     }
 
     public function index()
@@ -138,13 +134,5 @@ class ArticleController extends Controller
         ]);
     }
 
-    public function showCommentArticle($article_id)
-    {
-        $reviews = Review::where('article_id', $article_id)->get();
-        return response()->json([
-            'message' => 'Berhasil Menampilkan Komentar',
-            'status' => true,
-            'data' => ReviewResource::collection($reviews),
-        ]);
-    }
+
 }

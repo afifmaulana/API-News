@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ReviewResource;
 use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api')->except('showCommentArticle');
+    }
+
     public function ReviewStore(Request $request)
     {
         $review = new Review();
@@ -22,7 +29,7 @@ class ReviewController extends Controller
         return response()->json([
             'message' => 'Berhasil menambahkan Komentar',
             'status' => true,
-            'data' => $review,
+            'data' => (object)[]
         ]);
     }
 
@@ -30,8 +37,6 @@ class ReviewController extends Controller
     {
         $review = Review::find($id);
         $review->user_id = Auth::user()->id;
-//        $review->article_id = $request->article_id;
-//        $review->rating = $request->rating;
         $review->comment = $request->comment;
 
         $review->update();
@@ -40,6 +45,16 @@ class ReviewController extends Controller
             'message' => 'Berhasil Mengubah Komentar',
             'status' => true,
             'data' => $review
+        ]);
+    }
+
+    public function showReviewArticle($article_id)
+    {
+        $reviews = Review::where('article_id', $article_id)->get();
+        return response()->json([
+            'message' => 'Berhasil Menampilkan Komentar',
+            'status' => true,
+            'data' => ReviewResource::collection($reviews),
         ]);
     }
 
