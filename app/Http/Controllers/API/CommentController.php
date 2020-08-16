@@ -16,52 +16,6 @@ class CommentController extends Controller
         $this->middleware('auth:api')->except('showComment', 'showAnswerComment');
     }
 
-    public function comment(Request $request)
-    {
-        $review = new Review();
-        $review->user_id = Auth::user()->id;
-        $review->article_id = $request->article_id;
-        $review->rating = $request->rating;
-        $review->comment = $request->comment;
-
-        $review->save();
-
-        return response()->json([
-           'message' => 'Berhasil menambahkan Komentar',
-            'status' => true,
-            'data' => $review,
-        ]);
-    }
-
-    public function UpdateComment(Request $request, $id)
-    {
-        $review = Review::find($id);
-        $review->user_id = Auth::user()->id;
-//        $review->article_id = $request->article_id;
-//        $review->rating = $request->rating;
-        $review->comment = $request->comment;
-
-        $review->update();
-
-        return response()->json([
-            'message' => 'Berhasil Mengubah Komentar',
-            'status' => true,
-            'data' => $review
-        ]);
-    }
-
-    public function DeleteReview($id)
-    {
-        $review = Review::find($id);
-        $review->delete();
-
-        return response()->json([
-           'message' => 'Berhasil Menghapus Komentar',
-           'status' => true,
-           'data' => $review
-        ]);
-    }
-
     public function showComment($article_id)
     {
         $reviews = Review::where('article_id', $article_id)->get();

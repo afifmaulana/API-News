@@ -16,21 +16,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('user/register', 'API\AuthController@register');
 Route::post('user/login', 'API\AuthController@login');
+
+
 Route::get('article', 'API\ArticleController@index');
 Route::post('article/store', 'API\ArticleController@store');
 Route::put('article/{id}/update', 'API\ArticleController@updateArticle');
 Route::post('article/{id}/update/image', 'API\ArticleController@updateImage');
-Route::get('article/{id}/delete', 'API\ArticleController@delete');
+Route::get('article/{id}/destroy', 'API\ArticleController@delete');
 Route::get('article/show', 'API\ArticleController@showArticleUser');
 Route::get('article/category/{category_id}', 'API\ArticleController@showArticleCategory');
+
 Route::get('category', 'API\CategoryController@showCategory');
+
 Route::get('profile', 'API\UserController@profile');
 Route::post('profile/update/profile', 'API\UserController@UpdateProfile');
-Route::post('comment/store', 'API\CommentController@comment');
-Route::get('comment/article/{article_id}', 'API\ArticleController@showCommentArticle');
+
+Route::post('review/store', 'API\ReviewController@ReviewStore');
+Route::post('review/{id}/update', 'API\ReviewController@ReviewUpdate');
+Route::get('review/{id}/destroy', 'API\ReviewController@destroy');
+Route::get('review/article/{article_id}', 'API\ArticleController@showCommentArticle');
+
+
 Route::post('comment/answer/store', 'API\CommentController@AnswerComment');
-Route::put('comment/{id}/update', 'API\CommentController@UpdateComment');
-Route::get('comment/{id}/delete', 'API\CommentController@DeleteReview');
 
 
 
