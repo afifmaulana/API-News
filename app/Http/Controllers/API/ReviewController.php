@@ -13,7 +13,7 @@ class ReviewController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth:api')->except('showCommentArticle');
+        $this->middleware('auth:api')->except('showReviewArticle');
     }
 
     public function ReviewStore(Request $request)
