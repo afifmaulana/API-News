@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Comment;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\CommentResource;
 use App\Http\Resources\ReviewResource;
 use App\Review;
 use Illuminate\Http\Request;
@@ -31,6 +30,35 @@ class CommentController extends Controller
            'message' => 'Berhasil menambahkan Komentar',
             'status' => true,
             'data' => $review,
+        ]);
+    }
+
+    public function UpdateComment(Request $request, $id)
+    {
+        $review = Review::find($id);
+        $review->user_id = Auth::user()->id;
+//        $review->article_id = $request->article_id;
+//        $review->rating = $request->rating;
+        $review->comment = $request->comment;
+
+        $review->update();
+
+        return response()->json([
+            'message' => 'Berhasil Mengubah Komentar',
+            'status' => true,
+            'data' => $review
+        ]);
+    }
+
+    public function DeleteReview($id)
+    {
+        $review = Review::find($id);
+        $review->delete();
+
+        return response()->json([
+           'message' => 'Berhasil Menghapus Komentar',
+           'status' => true,
+           'data' => $review
         ]);
     }
 

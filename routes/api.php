@@ -29,8 +29,7 @@ Route::post('profile/update/profile', 'API\UserController@UpdateProfile');
 Route::post('comment/store', 'API\CommentController@comment');
 Route::get('comment/article/{article_id}', 'API\ArticleController@showCommentArticle');
 Route::post('comment/answer/store', 'API\CommentController@AnswerComment');
-//Route::get('comment/answer/{review_id}', 'API\CommentController@showAnswerComment');
-
+Route::put('comment/{id}/update', 'API\CommentController@UpdateComment');
 
 
 
