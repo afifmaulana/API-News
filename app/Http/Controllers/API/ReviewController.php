@@ -35,8 +35,8 @@ class ReviewController extends Controller
 
     public function ReviewUpdate(Request $request, $id)
     {
-        $review = Review::find($id);
-        $review->user_id = Auth::user()->id;
+        $user = Auth::user()->id;
+        $review = Review::find($id, $user);
         $review->comment = $request->comment;
 
         $review->update();
