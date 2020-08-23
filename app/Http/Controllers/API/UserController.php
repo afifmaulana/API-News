@@ -24,7 +24,7 @@ class UserController extends Controller
                 'message' => 'successfully get user is login',
                 'status' => true,
                 'data' => new UserResource($user)
-            ]);
+            ],200);
     }
 
     public function UpdateProfile(Request $request)
@@ -37,8 +37,6 @@ class UserController extends Controller
                 'message' => 'successfully update profile',
                 'status' => true,
                 'data' => $user
-                ]);
+                ], 200);
     }
-
-
 }

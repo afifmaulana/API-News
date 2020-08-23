@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Response;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,17 +20,23 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $rules = Validator::make($request->all(),[
+        $rules = [
             'name' => 'required',
             'email' => 'email|required|unique:users',
             'password' => 'min:6|required'
-        ]);
-        if ($rules->fails()){
-            return response()->json([
-                'message'=>$rules->errors(),
-                'status'=>false,
-                'data'=>(object)[]
-            ]);
+        ];
+
+        $message = [
+            'required' => ':attribute tidak boleh kosong',
+        ];
+
+        $traslate = [
+            'name' => 'Nama'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $message, $traslate);
+        if ($validator->fails()){
+            return Response::transform($validator->errors(), true, (object)[], 400);
         }
 
         $user = new User();
@@ -40,11 +47,9 @@ class AuthController extends Controller
 
         $user->save();
 
-        return response()->json([
-            'message' => 'Berhasil Register',
-            'status' => true,
-            'data' => $user
-        ]);
+
+        return Response::transform('Berhasil Register', true, $user, 200);
+
     }
 
     public function login(Request $request)
@@ -62,7 +67,7 @@ class AuthController extends Controller
                'message' =>$rules->errors(),
                 'status' =>false,
                 'data'   =>(object)[]
-            ]);
+            ], 401);
         }
 
 
@@ -86,6 +91,6 @@ class AuthController extends Controller
             'message' => 'Masukkan Email dan Password yang benar',
             'status' => false,
             'data' => (object)[]
-        ], 201);
+        ], 401);
     }
 }

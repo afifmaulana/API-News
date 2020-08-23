@@ -23,7 +23,7 @@ class CommentController extends Controller
            'message' => 'Berhasil menampilkan Komentar',
            'status' => true,
            'data' => ReviewResource::collection($reviews)
-        ]);
+        ], 200);
     }
 
     public function AnswerComment(Request $request)
@@ -39,7 +39,7 @@ class CommentController extends Controller
            'message' => 'Berhasil Membalas Komentar',
             'status' => true,
             'data' => (object)[]
-        ]);
+        ], 200);
     }
 
 //    public function showAnswerComment($review_id)

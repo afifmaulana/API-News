@@ -48,5 +48,4 @@ Route::post('comment/answer/store', 'API\CommentController@AnswerComment');
 
 
 
-//Route::get('comment/show', 'API\CommentController@showComment');
 

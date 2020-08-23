@@ -40,7 +40,7 @@ class ArticleController extends Controller
                 'message' => $rules->errors(),
                 'status' => false,
                 'data' => (object)[]
-            ]);
+            ], 400);
         }
 
 
@@ -62,11 +62,24 @@ class ArticleController extends Controller
             'message' => 'Berhasil Menambahkan Artikel',
             'status' => true,
             'data' => $article
-        ]);
+        ], 200);
     }
 
     public function updateArticle(Request $request, $id)
     {
+
+        $rules = Validator::make($request->all(),[
+            'title' => 'required',
+            'content_article' => 'required',
+        ]);
+        if ($rules->fails()) {
+            return response()->json([
+                'message' => $rules->errors(),
+                'status' => false,
+                'data' => (object)[]
+            ], 400);
+        }
+
         $article = Article::find($id);
         $article->title = $request->title;
         $article->category_id = $request->category_id;
@@ -78,12 +91,24 @@ class ArticleController extends Controller
             'message' => 'Berhasil Mengubah Artikel',
             'status' => true,
             'data' => $article
-        ]);
+        ],200);
     }
 
     public function updateImage(Request $request, $id)
     {
 //        dd($request->all());
+
+        $rules = Validator::make($request->all(),[
+            'image' => 'file|required|mimes:jpg,jpeg,png|max:2048'
+        ]);
+        if ($rules->fails()) {
+            return response()->json([
+                'message' => $rules->errors(),
+                'status' => false,
+                'data' => (object)[]
+            ], 400);
+        }
+
         $image_article = $request->file('image');
         $path = time(). $image_article->getClientOriginalExtension();
         $destinationPath = 'uploads/articles' . $path;
@@ -98,7 +123,7 @@ class ArticleController extends Controller
             'message' => 'Berhasil Mengubah Artikel',
             'status' => true,
             'data' => $article
-        ]);
+        ], 200);
     }
 
     public function delete($id)
@@ -111,7 +136,7 @@ class ArticleController extends Controller
             'message' => 'Berhasil Menghapus Artikel',
             'status' => true,
             'data' => $article
-        ]);
+        ], 200);
     }
 
     public function showArticleUser()
@@ -121,7 +146,7 @@ class ArticleController extends Controller
             'message' => 'Berhasil Menampilkan Artikel',
             'status' => true,
             'data' => ArticleResource::collection($articles),
-        ]);
+        ], 200);
     }
 
     public function showArticleCategory($category_id)
@@ -131,7 +156,7 @@ class ArticleController extends Controller
             'message' => 'Berhasil Menampilkan Artikel',
             'status' => true,
             'data' => ArticleResource::collection($articles),
-        ]);
+        ], 200);
     }
 
 

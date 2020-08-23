@@ -30,7 +30,7 @@ class ReviewController extends Controller
             'message' => 'Berhasil menambahkan Komentar',
             'status' => true,
             'data' => (object)[]
-        ]);
+        ], 200);
     }
 
     public function ReviewUpdate(Request $request, $id)
@@ -45,7 +45,7 @@ class ReviewController extends Controller
             'message' => 'Berhasil Mengubah Komentar',
             'status' => true,
             'data' => $review
-        ]);
+        ], 200);
     }
 
     public function showReviewArticle($article_id)
@@ -67,8 +67,7 @@ class ReviewController extends Controller
             'message' => 'Berhasil Menghapus Komentar',
             'status' => true,
             'data' => (object)[]
-        ]);
+        ], 200);
     }
-
 
 }
