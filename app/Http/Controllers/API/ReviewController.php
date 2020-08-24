@@ -7,6 +7,7 @@ use App\Http\Resources\ReviewResource;
 use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewController extends Controller
 {
@@ -18,6 +19,20 @@ class ReviewController extends Controller
 
     public function ReviewStore(Request $request)
     {
+
+        $rules = Validator::make($request->all(),[
+            'article_id' => 'required',
+            'rating' => 'required',
+            'comment' => 'required'
+        ]);
+        if ($rules->fails()) {
+            return response()->json([
+                'message' => $rules->errors(),
+                'status' => false,
+                'data' => (object)[]
+            ], 400);
+        }
+
         $review = new Review();
         $review->user_id = Auth::user()->id;
         $review->article_id = $request->article_id;
@@ -27,7 +42,7 @@ class ReviewController extends Controller
         $review->save();
 
         return response()->json([
-            'message' => 'Berhasil menambahkan Komentar',
+            'message' => 'Berhasil menambahkan Review',
             'status' => true,
             'data' => (object)[]
         ], 200);

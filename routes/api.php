@@ -31,7 +31,7 @@ Route::get('category', 'API\CategoryController@showCategory');
 
 //Route Profile
 Route::get('profile', 'API\UserController@profile');
-Route::post('profile/update/profile', 'API\UserController@UpdateProfile');
+Route::post('profile/update', 'API\UserController@UpdateProfile');
 
 //Route Review
 Route::post('review/store', 'API\ReviewController@ReviewStore');
