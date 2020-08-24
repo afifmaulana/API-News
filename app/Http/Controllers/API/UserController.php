@@ -34,7 +34,7 @@ class UserController extends Controller
             $user->password = Hash::make($request->password);
             $user->save();
             return response()->json([
-                'message' => 'successfully update profile',
+                'message' => 'Berhasil mengubah profil',
                 'status' => true,
                 'data' => $user
                 ], 200);
