@@ -42,14 +42,4 @@ class CommentController extends Controller
         ], 200);
     }
 
-//    public function showAnswerComment($review_id)
-//    {
-//        $comments = Comment::where('review_id', $review_id)->get();
-//        return response()->json([
-//           'message' => 'Berhasil Menampilkan Balasan Komentar',
-//           'status' => true,
-//           'data' => CommentResource::collection($comments)
-//        ]);
-//    }
-
 }

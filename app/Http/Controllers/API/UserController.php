@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         $user = User::all();
         return response()->json([
-           'message' => 'Berhasil Menampilkan semua user',
+           'message' => 'Berhasil menampilkan semua User',
            'status' => true,
            'data' => $user
         ]);

@@ -13,7 +13,7 @@ class CategoryController extends Controller
     {
         $categorys = Category::all();
         return response()->json([
-            'message' => 'Berhasil Menampilkan Category',
+            'message' => 'Berhasil Menampilkan Kategori',
             'status' => true,
             'data' => CategoryResource::collection($categorys),
         ]);
