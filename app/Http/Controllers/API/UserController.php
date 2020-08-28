@@ -13,9 +13,19 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:api');
+        $this->middleware('auth:api')->except('users');
     }
 
+
+    public function users()
+    {
+        $user = User::all();
+        return response()->json([
+           'message' => 'Berhasil Menampilkan semua user',
+           'status' => true,
+           'data' => $user
+        ]);
+    }
 
     public function profile()
     {

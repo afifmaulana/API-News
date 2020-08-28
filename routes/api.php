@@ -17,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::post('user/register', 'API\AuthController@register');
 Route::post('user/login', 'API\AuthController@login');
 
+Route::get('users', 'API\UserController@users');
+
 //Route Article
 Route::get('article', 'API\ArticleController@index');
 Route::post('article/store', 'API\ArticleController@store');
